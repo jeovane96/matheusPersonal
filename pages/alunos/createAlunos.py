@@ -31,7 +31,7 @@ def createAlunos():
     if input_button_submit:
 
         with st.spinner("Cadastrando aluno..."):   
-            sistema.nm_aluno    = input_nm_aluno 
+            sistema.nm_aluno    = input_nm_aluno.upper() 
             sistema.kg          = input_kg
             sistema.observacao  = input_observacao
             sistema.user        = input_user

@@ -12,3 +12,14 @@ class alunos:
         self.observacao  = observacao
         self.user        = user
         self.dt_insert   = dt_insert
+
+class agendamentos:
+    def __init__(self, id, nm_aluno, dia_semana_aula, horario_inicio, horario_fim, observacao, user, dt_insert):
+        self.id                 = id
+        self.nm_aluno           = nm_aluno
+        self.dia_semana_aula    = dia_semana_aula
+        self.horario_inicio     = horario_inicio
+        self.horario_fim        = horario_fim
+        self.observacao         = observacao
+        self.user               = user
+        self.dt_insert          = dt_insert

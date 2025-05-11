@@ -6,6 +6,8 @@ import pages.user.acesso                 as ValidacaoUsuario
 # import pages.user.listUser               as ListUsuario
 import pages.alunos.createAlunos         as createAlunos
 import pages.alunos.listAlunos           as listAlunos
+import pages.agendamentos.createAgendamentos as createAgendamentos
+import pages.agendamentos.calendarioAgendamento as calendarioAgendamento
 
 create_tbl.criar_tabelas_db()
 
@@ -63,11 +65,11 @@ st.markdown("""
         background-color: #286398;
         color: white;
         padding: 5px 12px;
-        border-radius: 12px;
+        border-radius: 15px;
         cursor: pointer;
         font-size: 16px;
         transition: all 0.3s ease;
-        width: 120px !important;
+        width: 160px !important;
         height: 35px !important;
     }
 
@@ -187,19 +189,19 @@ def acesso_tela():
 
     col1, col2 = st.columns([0.03, 0.2])
     with col1:
-        cadastrar_aluno_button = st.button("🏋🏻‍♀️ Alunos", use_container_width=True)
+        aluno_button = st.button("🏋🏻‍♀️ Alunos", use_container_width=True)
             
-    # with col2:
-    #     incluir_usuario_button = st.button("👤 Usuário", use_container_width=True)
+    with col2:
+        agendamento_button = st.button("📆 Agendamentos", use_container_width=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     if "active_page" not in st.session_state:
-        st.session_state["active_page"] = "listar"
-    elif cadastrar_aluno_button:
+        st.session_state["active_page"] = ""
+    elif aluno_button:
         st.session_state["active_page"] = "cadastrarAluno"
-    # elif cadastrar_meta_button:
-    #     st.session_state["active_page"] = "cadastrarMeta"
+    elif agendamento_button:
+        st.session_state["active_page"] = "cadastrarAgendamento"
 
     # if st.session_state["active_page"] == "cadastrarUsuario":
     #     inserir, deletar, consultar = st.tabs(["Inserir", "Deletar", "Consultar"])
@@ -216,6 +218,13 @@ def acesso_tela():
             createAlunos.createAlunos()
         with consultar:
             listAlunos.ListAlunos()
+
+    if st.session_state["active_page"] == "cadastrarAgendamento":
+        inserir, consultar = st.tabs(["Inserir", "Consultar"])
+        with inserir:
+            createAgendamentos.createAgendamentos()
+        with consultar:
+            calendarioAgendamento.agendamento()
 
 if ValidacaoUsuario.authenticate_user():
     if "just_logged_in" not in st.session_state:

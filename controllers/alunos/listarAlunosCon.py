@@ -27,3 +27,15 @@ def selecionarAlunos():
         customerList.append(sistema.alunos(row[0], row[1], row[2], row[3], row[4], row[5]))
 
     return customerList
+
+
+def listarAlunos():
+    conn = psycopg2.connect(db.db_url)
+    cursor = conn.cursor()
+    cursor.execute("SELECT nm_aluno FROM tb_alunos")
+    customerList = []
+
+    for row in cursor.fetchall():
+        customerList.append(sistema.alunos(id=None, nm_aluno=row[0], kg=None, observacao=None, user=None, dt_insert=None))
+    
+    return customerList
