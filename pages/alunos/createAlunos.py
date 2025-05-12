@@ -20,7 +20,7 @@ def createAlunos():
 
     with col1:
         input_nm_aluno  = st.text_input("**Aluno**", key="text_input_aluno")
-        input_kg        = st.number_input("**KG**", key="input_kg")
+        input_telefone  = st.text_input("**Telefone**", key="input_telefone")
 
     with col2:
         input_observacao  = st.text_input("**Observação**", key="text_input_observacap")
@@ -32,7 +32,7 @@ def createAlunos():
 
         with st.spinner("Cadastrando aluno..."):   
             sistema.nm_aluno    = input_nm_aluno.upper() 
-            sistema.kg          = input_kg
+            sistema.telefone    = input_telefone
             sistema.observacao  = input_observacao
             sistema.user        = input_user
             cadastrarAlunosCon.insertAlunos(sistema)

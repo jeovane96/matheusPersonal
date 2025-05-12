@@ -5,10 +5,10 @@ class usuario:
         self.senha  = senha
 
 class alunos:
-    def __init__(self, id, nm_aluno, kg, observacao, user, dt_insert):
+    def __init__(self, id, nm_aluno, telefone, observacao, user, dt_insert):
         self.id          = id
         self.nm_aluno    = nm_aluno
-        self.kg          = kg
+        self.telefone    = telefone
         self.observacao  = observacao
         self.user        = user
         self.dt_insert   = dt_insert

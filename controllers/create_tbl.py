@@ -20,7 +20,8 @@ def criar_tabelas_db():
             CREATE TABLE IF NOT EXISTS tb_alunos (
                 id          SERIAL PRIMARY KEY,
                 nm_aluno    TEXT NOT NULL,
-                kg          NUMERIC(5,2) NOT NULL,
+                --kg          NUMERIC(5,2) NOT NULL,
+                telefone    TEXT NOT NULL,
                 observacao  TEXT     NULL,
                 user_insert TEXT NOT NULL,
                 dt_insert   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP - INTERVAL '3 hours'

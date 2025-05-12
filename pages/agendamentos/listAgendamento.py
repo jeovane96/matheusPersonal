@@ -1,25 +1,25 @@
 import streamlit as st
-import controllers.alunos.listarAlunosCon as listarAlunosCon
+import controllers.agendamentos.listarAgendamentosCon as listarAgendamentosCon
 import pandas as pd
 
-def ListAlunos():
+def ListAgendamentos():
     customerList = []
 
-    for item in listarAlunosCon.selecionarAlunos():
-        customerList.append(
-            [
-                item.id,
-                item.nm_aluno,
-                item.telefone,
-                item.observacao,
-                item.user,
-                item.dt_insert 
-            ]
-        )
+    for item in listarAgendamentosCon.selecionarAgendamentos():
+        customerList.append([
+            item.id,
+            item.nm_aluno,       
+            item.dia_semana_aula,
+            item.horario_inicio, 
+            item.horario_fim,    
+            item.observacao,     
+            item.user,    
+            item.dt_insert     
+        ])
 
     df = pd.DataFrame(
         customerList,
-        columns=['ID', 'Aluno', 'Telefone', 'Observação', 'Usuário', 'Data']
+        columns=['ID', 'Aluno', 'Dia da Semana', 'Início', 'Fim', 'Observação', 'Usuário', 'Data de Cadastro']
     )
 
     table_html = df.to_html(index=False, classes="table", border=1)

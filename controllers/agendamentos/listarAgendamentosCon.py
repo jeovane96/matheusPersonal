@@ -4,19 +4,21 @@ from datetime import timedelta
 import controllers.database as db
 import psycopg2
 
-def selecionarAlunos():
+def selecionarAgendamentos():
     conn = psycopg2.connect(db.db_url)
     cursor = conn.cursor()
     cursor.execute("""
         SELECT
             id,         
-            nm_aluno,   
-            telefone,         
+            nm_aluno,       
+            dia_semana_aula,
+            horario_inicio, 
+            horario_fim,            
             observacao, 
             user_insert,                      
             TO_CHAR(dt_insert, 'DD/MM/YYYY HH24:MI') AS dt_insert                
         FROM 
-            tb_alunos
+            tb_agendamentos
         ORDER BY
             ID
         ASC
@@ -24,18 +26,6 @@ def selecionarAlunos():
     customerList = []
 
     for row in cursor.fetchall():
-        customerList.append(sistema.alunos(row[0], row[1], row[2], row[3], row[4], row[5]))
+        customerList.append(sistema.agendamentos(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
 
-    return customerList
-
-
-def listarAlunos():
-    conn = psycopg2.connect(db.db_url)
-    cursor = conn.cursor()
-    cursor.execute("SELECT nm_aluno FROM tb_alunos")
-    customerList = []
-
-    for row in cursor.fetchall():
-        customerList.append(sistema.alunos(id=None, nm_aluno=row[0], telefone=None, observacao=None, user=None, dt_insert=None))
-    
     return customerList

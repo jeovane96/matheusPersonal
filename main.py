@@ -8,6 +8,7 @@ import pages.alunos.createAlunos         as createAlunos
 import pages.alunos.listAlunos           as listAlunos
 import pages.agendamentos.createAgendamentos as createAgendamentos
 import pages.agendamentos.calendarioAgendamento as calendarioAgendamento
+import pages.agendamentos.listAgendamento as listAgendamento
 
 create_tbl.criar_tabelas_db()
 
@@ -56,7 +57,7 @@ st.markdown("""
 
     /* Cor de fundo da aplicação */
     .stApp { 
-        background: linear-gradient(135deg, #D1F6FB, #D1F6FB, #D1F6FB); 
+        background: linear-gradient(135deg, #E0FAFC, #E0FAFC, #E0FAFC); 
     }
 
     /* Estilizar os botões */
@@ -203,14 +204,6 @@ def acesso_tela():
     elif agendamento_button:
         st.session_state["active_page"] = "cadastrarAgendamento"
 
-    # if st.session_state["active_page"] == "cadastrarUsuario":
-    #     inserir, deletar, consultar = st.tabs(["Inserir", "Deletar", "Consultar"])
-    #     with inserir:
-    #         CreateUsuario.Incluir_usuario()
-    #     with deletar:
-    #         CreateUsuario.ExcluirUsuario()
-    #     with consultar:
-    #         ListUsuario.ListUsuarios()
 
     if st.session_state["active_page"] == "cadastrarAluno":
         inserir, consultar = st.tabs(["Inserir", "Consultar"])
@@ -220,11 +213,13 @@ def acesso_tela():
             listAlunos.ListAlunos()
 
     if st.session_state["active_page"] == "cadastrarAgendamento":
-        inserir, consultar = st.tabs(["Inserir", "Consultar"])
+        inserir, agenda = st.tabs(["Inserir", "Agenda"])
         with inserir:
             createAgendamentos.createAgendamentos()
-        with consultar:
+        with agenda:
             calendarioAgendamento.agendamento()
+        # with relatorio:
+        #     listAgendamento.ListAgendamentos()
 
 if ValidacaoUsuario.authenticate_user():
     if "just_logged_in" not in st.session_state:

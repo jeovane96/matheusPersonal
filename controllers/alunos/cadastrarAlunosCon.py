@@ -12,7 +12,7 @@ def insertAlunos(insert_alunos):
         cursor.execute(""" 
             INSERT INTO tb_alunos (
                 nm_aluno,  
-                kg,        
+                telefone,        
                 observacao,
                 user_insert                      
             ) 
@@ -24,7 +24,7 @@ def insertAlunos(insert_alunos):
             )""",
             (
                 insert_alunos.nm_aluno, 
-                insert_alunos.kg,
+                insert_alunos.telefone,
                 insert_alunos.observacao,
                 insert_alunos.user
             )
