@@ -9,6 +9,8 @@ import pages.alunos.listAlunos           as listAlunos
 import pages.agendamentos.createAgendamentos as createAgendamentos
 import pages.agendamentos.calendarioAgendamento as calendarioAgendamento
 import pages.agendamentos.listAgendamento as listAgendamento
+import pages.treinos.createTreinos as createTreinos
+import pages.treinos.listTreinos as listTreinos
 
 create_tbl.criar_tabelas_db()
 
@@ -57,14 +59,14 @@ st.markdown("""
 
     /* Cor de fundo da aplicação */
     .stApp { 
-        background: linear-gradient(135deg, #E0FAFC, #E0FAFC, #E0FAFC); 
+        background: linear-gradient(135deg, #F4F4F4, #F4F4F4, #F4F4F4); 
     }
 
     /* Estilizar os botões */
     .stButton button {
-        border: 2px solid #286398;
-        background-color: #286398;
-        color: white;
+        border: 2px solid white;
+        background-color: #C6FF00;
+        color: black;
         padding: 5px 12px;
         border-radius: 15px;
         cursor: pointer;
@@ -83,8 +85,9 @@ st.markdown("""
     .stButton button:focus, .stButton button:active {
         outline: none !important;
         box-shadow: none !important;
-        background-color: #286398 !important;
-        border-color: #286398 !important;
+        background-color: black !important;
+        border-color: black !important;
+        color: white !important;
     }
 
     /* Ajuste do layout das abas */
@@ -154,6 +157,18 @@ st.markdown("""
         background-color: white !important;
         color: black !important;
     }
+    /* Fundo da sidebar */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(135deg, #203764, #203764, #203764);
+    }
+
+    /* Título da sidebar */
+    .sidebar-title {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
     </style>
 
 """, unsafe_allow_html=True)
@@ -168,7 +183,7 @@ if "authenticated" in st.session_state and st.session_state["authenticated"]:
                 right: 70px; /* Mantém na direita */
                 font-size: 12px;
                 color: #333;
-                background-color: #C9F5FB;
+                background-color: none;
                 padding: 8px 15px;
                 border-radius: 10px;
             }}
@@ -188,14 +203,11 @@ def acesso_tela():
 
     st.markdown('<div class="button-container">', unsafe_allow_html=True)
 
-    col1, col2 = st.columns([0.03, 0.2])
-    with col1:
-        aluno_button = st.button("🏋🏻‍♀️ Alunos", use_container_width=True)
-            
-    with col2:
-        agendamento_button = st.button("📆 Agendamentos", use_container_width=True)
+    st.sidebar.markdown('<div class="sidebar-title">📂 Navegação</div>', unsafe_allow_html=True)
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    aluno_button       = st.sidebar.button("👨‍🎓 Alunos", use_container_width=True)
+    agendamento_button = st.sidebar.button("📆 Agendamentos", use_container_width=True)
+    treino_button      = st.sidebar.button("🏋🏻 Treinos", use_container_width=True)
 
     if "active_page" not in st.session_state:
         st.session_state["active_page"] = ""
@@ -203,6 +215,8 @@ def acesso_tela():
         st.session_state["active_page"] = "cadastrarAluno"
     elif agendamento_button:
         st.session_state["active_page"] = "cadastrarAgendamento"
+    elif treino_button:
+        st.session_state["active_page"] = "telaTreinos"
 
 
     if st.session_state["active_page"] == "cadastrarAluno":
@@ -220,6 +234,15 @@ def acesso_tela():
             calendarioAgendamento.agendamento()
         # with relatorio:
         #     listAgendamento.ListAgendamentos()
+
+    if st.session_state["active_page"] == "telaTreinos":
+        cadastrar_treino, treino_aluno, consultar = st.tabs(["Cadastrar Treino", "Treino do Aluno", "Consultar"])
+        with cadastrar_treino:
+            createTreinos.createTreinos()
+        with treino_aluno:
+            None
+        with consultar:
+            listTreinos.ListTreinos()
 
 if ValidacaoUsuario.authenticate_user():
     if "just_logged_in" not in st.session_state:

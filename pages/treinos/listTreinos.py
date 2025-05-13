@@ -1,17 +1,17 @@
 import streamlit as st
-import controllers.alunos.listarAlunosCon as listarAlunosCon
+import controllers.treinos.listarTreinosCon as listarTreinosCon
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
 
-def ListAlunos():
+def ListTreinos():
     customerList = []
 
-    for item in listarAlunosCon.selecionarAlunos():
+    for item in listarTreinosCon.selecionarTreinos():
         customerList.append(
             [
                 item.id,
-                item.nm_aluno,
-                item.telefone,
+                item.nm_treino,
+                item.nm_grupo_membro,
                 item.observacao,
                 item.user,
                 item.dt_insert if item.dt_insert else ""
@@ -20,7 +20,7 @@ def ListAlunos():
 
     df = pd.DataFrame(
         customerList,
-        columns=['ID', 'Aluno', 'Telefone', 'Observação', 'Usuário', 'Data']
+        columns=['ID', 'Treino', 'Grupo de membro', 'Observação', 'Usuário', 'Data']
     )
 
     # Configurações do AgGrid

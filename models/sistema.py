@@ -23,3 +23,12 @@ class agendamentos:
         self.observacao         = observacao
         self.user               = user
         self.dt_insert          = dt_insert
+
+class treinos:
+    def __init__(self, id, nm_treino, nm_grupo_membro, observacao, user, dt_insert):
+        self.id                 = id
+        self.nm_treino          = nm_treino
+        self.nm_grupo_membro    = nm_grupo_membro
+        self.observacao         = observacao
+        self.user               = user
+        self.dt_insert          = dt_insert
