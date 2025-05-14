@@ -38,6 +38,6 @@ def createTreinos():
             time.sleep(2) 
 
         success_container = st.empty()
-        st.success(f"Aluno **{input_nm_treino}** cadastrado com sucesso!")  
+        st.success(f"Treino **{input_nm_treino.upper()}** cadastrado com sucesso!")  
         time.sleep(2)
         success_container.empty()

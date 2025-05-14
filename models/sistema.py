@@ -32,3 +32,15 @@ class treinos:
         self.observacao         = observacao
         self.user               = user
         self.dt_insert          = dt_insert
+
+class treinosAlunos:
+    def __init__(self, id, nm_aluno, nm_treino, nr_repeticao, peso, nr_tempo_descanso, observacao, user, dt_insert):
+        self.id                 = id
+        self.nm_aluno           = nm_aluno
+        self.nm_treino          = nm_treino
+        self.nr_repeticao       = nr_repeticao
+        self.peso               = peso
+        self.nr_tempo_descanso  = nr_tempo_descanso
+        self.observacao         = observacao
+        self.user               = user
+        self.dt_insert          = dt_insert

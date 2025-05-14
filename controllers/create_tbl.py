@@ -50,7 +50,21 @@ def criar_tabelas_db():
                 user_insert     TEXT NOT NULL,
                 dt_insert       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP - INTERVAL '3 hours'
             )''')
-        print("Tabela 'tb_agendamentos' criada com sucesso.")
+        print("Tabela 'tb_treinos' criada com sucesso.")
+
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS tb_treinos_alunos (
+                id                SERIAL PRIMARY KEY,
+                nm_aluno          TEXT NOT NULL,      
+                nm_treino         TEXT NOT NULL,
+                nr_repeticao      INTEGER NOT NULL,
+                peso              NUMERIC(5,2) NOT NULL,   
+                nr_tempo_descanso INTEGER NOT NULL,     
+                observacao        TEXT     NULL,
+                user_insert       TEXT NOT NULL,
+                dt_insert         TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP - INTERVAL '3 hours'
+            )''')
+        print("Tabela 'tb_treinos_alunos' criada com sucesso.")
 
     except psycopg2.Error as e:
         print(f"Erro ao criar tabelas: {e}")

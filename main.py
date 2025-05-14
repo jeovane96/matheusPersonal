@@ -1,9 +1,9 @@
 import streamlit                         as st
 import controllers.create_tbl            as create_tbl
 import pages.user.acesso                 as ValidacaoUsuario
-# import controllers.user.usuarioCon       as controllerUser
-# import pages.user.createUser             as CreateUsuario
-# import pages.user.listUser               as ListUsuario
+import controllers.user.usuarioCon       as controllerUser
+import pages.user.createUser             as CreateUsuario
+import pages.user.listUser               as ListUsuario
 import pages.alunos.createAlunos         as createAlunos
 import pages.alunos.listAlunos           as listAlunos
 import pages.agendamentos.createAgendamentos as createAgendamentos
@@ -11,8 +11,9 @@ import pages.agendamentos.calendarioAgendamento as calendarioAgendamento
 import pages.agendamentos.listAgendamento as listAgendamento
 import pages.treinos.createTreinos as createTreinos
 import pages.treinos.listTreinos as listTreinos
+import pages.treinosAlunos.createTreinosAluno as createTreinosAluno
 
-create_tbl.criar_tabelas_db()
+# create_tbl.criar_tabelas_db()
 
 
 # --- Define layout baseado no login ---
@@ -29,7 +30,7 @@ st.markdown("""
         margin-top: -90px; /* Ajuste para subir mais */
         margin-bottom: 10px;
     ">
-        <h1 style="margin: 0;">VitFit 🦾</h1>
+        <h1 style="margin: 0;">Evolu +</h1>
     </div>
 """, unsafe_allow_html=True)
 
@@ -72,7 +73,7 @@ st.markdown("""
         cursor: pointer;
         font-size: 16px;
         transition: all 0.3s ease;
-        width: 160px !important;
+        width: 180px !important;
         height: 35px !important;
     }
 
@@ -160,8 +161,13 @@ st.markdown("""
     /* Fundo da sidebar */
     section[data-testid="stSidebar"] {
         background: linear-gradient(135deg, #203764, #203764, #203764);
+        width: 212px !important;
+        min-width: 212px !important;
+        max-width: 212px !important;
+        resize: none !important;
+        overflow: hidden !important;
     }
-
+        
     /* Título da sidebar */
     .sidebar-title {
         color: white;
@@ -205,9 +211,11 @@ def acesso_tela():
 
     st.sidebar.markdown('<div class="sidebar-title">📂 Navegação</div>', unsafe_allow_html=True)
 
-    aluno_button       = st.sidebar.button("👨‍🎓 Alunos", use_container_width=True)
-    agendamento_button = st.sidebar.button("📆 Agendamentos", use_container_width=True)
-    treino_button      = st.sidebar.button("🏋🏻 Treinos", use_container_width=True)
+    aluno_button            = st.sidebar.button("👨‍🎓 Alunos", use_container_width=True)
+    agendamento_button      = st.sidebar.button("📆 Agendamentos", use_container_width=True)
+    treino_button           = st.sidebar.button("🏋🏻 Treinos", use_container_width=True)
+    treinos_alunos_button   = st.sidebar.button("🔒 Treinos dos Alunos", use_container_width=True)
+    usuario_button          = st.sidebar.button("🔒 Usuário", use_container_width=True)
 
     if "active_page" not in st.session_state:
         st.session_state["active_page"] = ""
@@ -217,6 +225,10 @@ def acesso_tela():
         st.session_state["active_page"] = "cadastrarAgendamento"
     elif treino_button:
         st.session_state["active_page"] = "telaTreinos"
+    elif treinos_alunos_button:
+        st.session_state["active_page"] = "telaTreinosAlunos"
+    elif usuario_button:
+        st.session_state["active_page"] = "telaUsuarios"
 
 
     if st.session_state["active_page"] == "cadastrarAluno":
@@ -236,13 +248,33 @@ def acesso_tela():
         #     listAgendamento.ListAgendamentos()
 
     if st.session_state["active_page"] == "telaTreinos":
-        cadastrar_treino, treino_aluno, consultar = st.tabs(["Cadastrar Treino", "Treino do Aluno", "Consultar"])
-        with cadastrar_treino:
+        cadastrar, consultar = st.tabs(["Cadastrar", "Consultar"])
+        with cadastrar:
             createTreinos.createTreinos()
-        with treino_aluno:
-            None
         with consultar:
             listTreinos.ListTreinos()
+
+    if st.session_state["active_page"] == "telaUsuarios":
+        inserir, consultar = st.tabs(["Inserir", "Consultar"])
+        with inserir:
+            CreateUsuario.Incluir_usuario()
+        with consultar:
+            ListUsuario.ListUsuarios()
+        # with relatorio:
+        #     listAgendamento.ListAgendamentos()
+
+    if st.session_state["active_page"] == "telaTreinosAlunos":
+        inserir, consultar = st.tabs(["Inserir", "Consultar"])
+        with inserir:
+            createTreinosAluno.createTreinosAlunos()
+        with consultar:
+            None
+        # with relatorio:
+        #     listAgendamento.ListAgendamentos()
+
+
+#treinos_alunos_button
+
 
 if ValidacaoUsuario.authenticate_user():
     if "just_logged_in" not in st.session_state:
@@ -257,5 +289,5 @@ if ValidacaoUsuario.authenticate_user():
     #     usuario_adm()
 
 
-# CreateUsuario.Incluir_usuario()
-# ListUsuario.ListUsuarios() #yuaGVc5E
+# CreateUsuario.Incluir_usuario() #dev
+# ListUsuario.ListUsuarios() #mIefDERe

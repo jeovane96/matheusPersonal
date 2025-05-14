@@ -24,7 +24,7 @@ def createAlunos():
 
     with col2:
         input_observacao  = st.text_input("**Observação**", key="text_input_observacap")
-        input_user        = st.text_input("**Usuário**", value=user, disabled=True, key="usuario_autenticado_create")
+        # input_user        = st.text_input("**Usuário**", value=user, disabled=True, key="usuario_autenticado_create")
 
     input_button_submit     = st.button("**Enviar**", key="button_create")
         
@@ -34,7 +34,7 @@ def createAlunos():
             sistema.nm_aluno    = input_nm_aluno.upper() 
             sistema.telefone    = input_telefone
             sistema.observacao  = input_observacao
-            sistema.user        = input_user
+            sistema.user        = user
             cadastrarAlunosCon.insertAlunos(sistema)
             time.sleep(2) 
 

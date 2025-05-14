@@ -32,7 +32,15 @@ def ListAlunos():
         sortable=True,
         filter=False
     )
-    # gb.configure_pagination(paginationAutoPageSize=False, paginationPageSize=15)
+
+    # Ajustar colunas específicas automaticamente com base no conteúdo
+    gb.configure_column('ID', maxWidth=80, autoWidth=True)
+    gb.configure_column('Aluno', autoWidth=True)
+    gb.configure_column('Telefone', autoWidth=True)
+    gb.configure_column('Observação', autoWidth=True)
+    gb.configure_column('Usuário', autoWidth=True)
+    gb.configure_column('Data', autoWidth=True)
+
     gb.configure_grid_options(domLayout='normal')
     grid_options = gb.build()
 
@@ -41,7 +49,7 @@ def ListAlunos():
         df,
         gridOptions=grid_options,
         height=600,
-        fit_columns_on_grid_load=True,
-        theme='material',  # Alternativas: 'streamlit', 'alpine', 'balham'
+        autoSizeColumns=True,  # Ativa o ajuste automático das colunas
+        theme='material',
         enable_enterprise_modules=False
     )
