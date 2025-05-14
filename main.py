@@ -213,8 +213,8 @@ def acesso_tela():
 
     aluno_button            = st.sidebar.button("👨‍🎓 Alunos", use_container_width=True)
     agendamento_button      = st.sidebar.button("📆 Agendamentos", use_container_width=True)
-    treino_button           = st.sidebar.button("🏋🏻 Treinos", use_container_width=True)
-    treinos_alunos_button   = st.sidebar.button("🔒 Treinos dos Alunos", use_container_width=True)
+    treino_button           = st.sidebar.button("🎯 Treinos", use_container_width=True)
+    treinos_alunos_button   = st.sidebar.button("🏋🏻 Treinos dos Alunos", use_container_width=True)
     usuario_button          = st.sidebar.button("🔒 Usuário", use_container_width=True)
 
     if "active_page" not in st.session_state:
