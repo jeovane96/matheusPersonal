@@ -50,7 +50,7 @@ def Incluir_usuario():
 
     with col1:
         input_usuario       = st.text_input("**Usuário (E-mail)**", value="")  # Alterado para garantir um valor padrão
-        input_senha         = st.text_input("**Senha Gerada**", value=senha_gerada, disabled=True)
+        # input_senha         = st.text_input("**Senha Gerada**", value=senha_gerada, disabled=True)
         
         input_button_submit = st.button("**Enviar**")
 

@@ -122,7 +122,7 @@ def ListAgendamentos():
         df,
         gridOptions=grid_options,
         height=600,
-        fit_columns_on_grid_load=True,
+        fit_columns_on_grid_load=False,
         theme='material',  # 'streamlit', 'alpine', 'balham' também são válidos
         enable_enterprise_modules=False
     )

@@ -44,12 +44,21 @@ def ListTreinos():
     gb.configure_grid_options(domLayout='normal')
     grid_options = gb.build()
 
-    # Renderização
+    # # Renderização
+    # AgGrid(
+    #     df,
+    #     gridOptions=grid_options,
+    #     height=600,
+    #     autoSizeColumns=False,  # Ativa o ajuste automático das colunas
+    #     theme='material',
+    #     enable_enterprise_modules=False
+    # )
+    # Renderização da tabela com AgGrid
     AgGrid(
         df,
         gridOptions=grid_options,
         height=600,
-        autoSizeColumns=True,  # Ativa o ajuste automático das colunas
-        theme='material',
+        fit_columns_on_grid_load=False,
+        theme='material',  # 'streamlit', 'alpine', 'balham' também são válidos
         enable_enterprise_modules=False
     )

@@ -15,7 +15,7 @@ def agendamento():
     df["horario_inicio"] = pd.to_datetime(df["horario_inicio"], format="%H:%M:%S").dt.time
     df["horario_fim"]    = pd.to_datetime(df["horario_fim"], format="%H:%M:%S").dt.time
 
-    horarios = pd.date_range("07:00", "22:00", freq="30min").time
+    horarios = pd.date_range("05:00", "22:00", freq="30min").time
     dias     = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     agenda   = pd.DataFrame("", index=[h.strftime("%H:%M") for h in horarios], columns=dias)
 

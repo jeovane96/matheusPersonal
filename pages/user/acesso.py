@@ -70,7 +70,7 @@ def authenticate_user():
                         <div style="
                             padding: 10px;
                             border-radius: 5px;
-                            background-color: #E2FAFE; /* Cor verde personalizada */
+                            background-color: #D9D9D9; /* Cor verde personalizada */
                             color: black; /* Texto branco */
                             text-align: center;
                             font-weight: bold;">
